@@ -1,0 +1,156 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 326 68% 43%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 217 100% 50%;
+    --secondary-foreground: 0 0% 98%;
+    --accent: 35 100% 50%;
+    --accent-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 346 68% 43%;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 326 68% 43%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 217 100% 50%;
+    --secondary-foreground: 0 0% 98%;
+    --accent: 35 100% 50%;
+    --accent-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 346 68% 43%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-montserrat;
+  }
+  
+  /* Optimizaciones táctiles */
+  button, a {
+    @apply min-h-[44px] min-w-[44px] cursor-pointer touch-manipulation;
+  }
+  
+  /* Mejoras de accesibilidad */
+  :focus {
+    @apply outline-2 outline-offset-2 outline-primary;
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      @apply transition-none animate-none;
+    }
+  }
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, #D8409F 0%, #0078FF 50%, #FFA700 100%);
+}
+
+.glass-effect {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #D8409F, #0078FF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.feature-card {
+  @apply relative overflow-hidden rounded-2xl p-6 transition-all duration-300 hover:shadow-xl;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(216, 64, 159, 0.1), rgba(0, 120, 255, 0.1));
+  z-index: -1;
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+
+.feature-card:hover::before {
+  opacity: 1;
+}
+
+/* Microanimaciones */
+.hover-scale {
+  @apply transition-transform duration-300 hover:scale-105;
+}
+
+.hover-lift {
+  @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg;
+}
+
+.pulse {
+  @apply animate-pulse;
+}
+
+/* Optimizaciones de rendimiento */
+img, video {
+  @apply will-change-transform;
+}
+
+/* Mejoras de accesibilidad */
+.sr-only {
+  @apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0;
+}
+
+/* Soporte para modo oscuro */
+.dark .feature-card {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* Optimizaciones móviles */
+@media (max-width: 640px) {
+  .container {
+    @apply px-4;
+  }
+  
+  button, a {
+    @apply p-4;
+  }
+}
