@@ -1,0 +1,197 @@
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="https://cdn.cloudflare.com/vokaflow/assets/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="VokaFlow: Plataforma líder en traducción simultánea y comunicación global. Traduce audio y texto en tiempo real, conecta sin barreras idiomáticas y potencia tu comunicación internacional" />
+    <meta name="theme-color" content="#D8409F" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="google-site-verification" content="ylqNom3oEEUVJIkUzrCkdDygPVjryaSe8nKkr7idyyM" />
+    
+    <!-- Firebase SDK -->
+    
+    
+    <!-- SEO Metatags -->
+    <meta name="robots" content="index, follow" />
+    <meta name="keywords" content="traducción simultánea, comunicación global, app multilingüe, soporte empresarial multilingüe, traducción en tiempo real, comunicación internacional, traducción de audio, traducción de texto" />
+    <meta name="author" content="VokaFlow" />
+    
+    <title>VokaFlow: Traducción Simultánea para una Comunicación Global Efectiva</title>
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="VokaFlow - Traducción Simultánea para Comunicación Global" />
+    <meta property="og:description" content="VokaFlow: Plataforma líder en traducción simultánea y comunicación global. Traduce audio y texto en tiempo real, conecta sin barreras idiomáticas y potencia tu comunicación internacional" />
+    <meta property="og:image" content="https://cdn.cloudflare.com/vokaflow/assets/og-image.png" />
+    <meta property="og:type" content="website" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="VokaFlow - Traducción Simultánea para Comunicación Global" />
+    <meta name="twitter:description" content="VokaFlow: Plataforma líder en traducción simultánea y comunicación global. Traduce audio y texto en tiempo real, conecta sin barreras idiomáticas" />
+    <meta name="twitter:image" content="https://cdn.cloudflare.com/vokaflow/assets/twitter-card.png" />
+    
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "VokaFlow",
+        "description": "Plataforma de traducción simultánea y comunicación en tiempo real para una comunicación global efectiva",
+        "applicationCategory": "CommunicationApplication",
+        "operatingSystem": "Web",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    </script>
+    
+    <!-- CDN Performance Optimization -->
+    <link rel="preconnect" href="https://cdn.cloudflare.com" crossorigin />
+    <link rel="dns-prefetch" href="https://cdn.cloudflare.com" />
+    
+    <!-- Preload critical assets from CDN -->
+    <link rel="preload" href="https://cdn.cloudflare.com/vokaflow/assets/favicon.png" as="image" />
+    <link rel="preload" href="https://cdn.cloudflare.com/vokaflow/css/index.css" as="style" />
+    <link rel="preload" href="https://cdn.cloudflare.com/vokaflow/js/main.js" as="script" type="module" />
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Font optimization -->
+    <link rel="preload" as="font" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" type="font/woff2" crossorigin />
+    
+    <!-- Cache Control -->
+    <meta http-equiv="Cache-Control" content="max-age=31536000" />
+    
+    <!-- Security headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; img-src 'self' https: data:; style-src 'self' 'unsafe-inline' https:; script-src 'self' 'unsafe-inline' https:; connect-src 'self' https:; font-src 'self' https: data:;" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN" />
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+    
+    <!-- Performance optimization -->
+    <link rel="dns-prefetch" href="https://storage.googleapis.com" />
+    <meta http-equiv="Accept-CH" content="DPR, Width, Viewport-Width" />
+    <script type="module" crossorigin src="/assets/index-5e19c221.js"></script>
+    <link rel="stylesheet" href="/assets/index-41b1f4e5.css">
+    <script type="module">
+window.onerror = (message, source, lineno, colno, errorObj) => {
+	window.parent.postMessage({
+		type: 'horizons-runtime-error',
+		message,
+		source,
+		lineno,
+		colno,
+		error: errorObj && errorObj.stack
+	}, '*');
+};
+</script>
+    <script type="module">
+const observer = new MutationObserver((mutations) => {
+	for (const mutation of mutations) {
+		for (const addedNode of mutation.addedNodes) {
+			if (
+				addedNode.nodeType === Node.ELEMENT_NODE &&
+				(
+					addedNode.tagName?.toLowerCase() === 'vite-error-overlay' ||
+					addedNode.classList?.contains('backdrop')
+				)
+			) {
+				handleViteOverlay(addedNode);
+			}
+		}
+	}
+});
+
+observer.observe(document.documentElement, {
+	childList: true,
+	subtree: true
+});
+
+function handleViteOverlay(node) {
+	if (!node.shadowRoot) {
+		return;
+	}
+
+	const backdrop = node.shadowRoot.querySelector('.backdrop');
+
+	if (backdrop) {
+		const overlayHtml = backdrop.outerHTML;
+		const parser = new DOMParser();
+		const doc = parser.parseFromString(overlayHtml, 'text/html');
+		const messageBodyElement = doc.querySelector('.message-body');
+		const fileElement = doc.querySelector('.file');
+		const messageText = messageBodyElement ? messageBodyElement.textContent.trim() : '';
+		const fileText = fileElement ? fileElement.textContent.trim() : '';
+		const error = messageText + (fileText ? ' File:' + fileText : '');
+
+		window.parent.postMessage({
+			type: 'horizons-vite-error',
+			error,
+		}, '*');
+	}
+}
+</script>
+    <script type="module">
+const originalConsoleError = console.error;
+console.error = function(...args) {
+	originalConsoleError.apply(console, args);
+
+	const errorString = args.map(arg => typeof arg === 'object' ? JSON.stringify(arg) : String(arg)).join(' ').toLowerCase();
+
+	window.parent.postMessage({
+		type: 'horizons-console-error',
+		error: errorString
+	}, '*');
+};
+</script>
+    <script type="module">
+const originalFetch = window.fetch;
+
+window.fetch = function(...args) {
+	const url = args[0] instanceof Request ? args[0].url : args[0];
+
+	// Skip WebSocket URLs
+	if (url.startsWith('ws:') || url.startsWith('wss:')) {
+		return originalFetch.apply(this, args);
+	}
+
+	return originalFetch.apply(this, args)
+		.then(async response => {
+			const contentType = response.headers.get('Content-Type') || '';
+
+			// Exclude HTML document responses
+			const isDocumentResponse =
+				contentType.includes('text/html') ||
+				contentType.includes('application/xhtml+xml');
+
+			if (!response.ok && !isDocumentResponse) {
+					const responseClone = response.clone();
+					const errorFromRes = await responseClone.text();
+					const requestUrl = response.url;
+					console.error(`Fetch error from ${requestUrl}: ${errorFromRes}`);
+			}
+
+			return response;
+		})
+		.catch(error => {
+			if (!url.match(/.html?$/i)) {
+				console.error(error);
+			}
+
+			throw error;
+		});
+};
+</script>
+  </head>
+  <body>
+    <div id="root"></div>
+    
+  </body>
+</html>
