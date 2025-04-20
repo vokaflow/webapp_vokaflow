@@ -3,32 +3,61 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="https://storage.googleapis.com/hostinger-horizons-assets-prod/d7736bd0-0d27-42e9-93a8-56641bfcc987/3abef47c5f736d5cc02cd02dc8a89871.png" />
+    <link rel="icon" type="image/png" href="https://cdn.cloudflare.com/vokaflow/assets/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="VokaFlow ofrece traducción simultánea de texto y audio, facilitando una comunicación global efectiva y aumentando tu productividad multilingüe." />
+    <meta name="description" content="VokaFlow: Plataforma líder en traducción simultánea y comunicación global. Traduce audio y texto en tiempo real, conecta sin barreras idiomáticas y potencia tu comunicación internacional" />
     <meta name="theme-color" content="#D8409F" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="google-site-verification" content="ylqNom3oEEUVJIkUzrCkdDygPVjryaSe8nKkr7idyyM" />
     
+    <!-- Firebase SDK -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+      import { getAuth } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
+      import { getFirestore } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-analytics.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyBcpx5gOGxxD1Q9hGZyoz_UA6ZDNB2NkVk",
+        authDomain: "vokaflow-c1061.firebaseapp.com",
+        projectId: "vokaflow-c1061",
+        storageBucket: "vokaflow-c1061.firebasestorage.app",
+        messagingSenderId: "991486137413",
+        appId: "1:991486137413:web:ee2bcae304a0340ebdbf2c",
+        measurementId: "G-W0T4QFDW9J"
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      const db = getFirestore(app);
+      const analytics = getAnalytics(app);
+
+      // Exporta globalmente si necesario
+      window.firebaseApp = app;
+      window.firebaseAuth = auth;
+      window.firebaseDb = db;
+      window.firebaseAnalytics = analytics;
+    </script>
+    
     <!-- SEO Metatags -->
     <meta name="robots" content="index, follow" />
-    <meta name="keywords" content="traducción simultánea, comunicación global, productividad multilingüe, vokaflow, traducción en tiempo real" />
+    <meta name="keywords" content="traducción simultánea, comunicación global, app multilingüe, soporte empresarial multilingüe, traducción en tiempo real, comunicación internacional, traducción de audio, traducción de texto" />
     <meta name="author" content="VokaFlow" />
     
     <title>VokaFlow: Traducción Simultánea para una Comunicación Global Efectiva</title>
     
     <!-- Open Graph -->
     <meta property="og:title" content="VokaFlow - Traducción Simultánea para Comunicación Global" />
-    <meta property="og:description" content="VokaFlow ofrece traducción simultánea de texto y audio, facilitando una comunicación global efectiva y aumentando tu productividad multilingüe." />
-    <meta property="og:image" content="https://storage.googleapis.com/hostinger-horizons-assets-prod/d7736bd0-0d27-42e9-93a8-56641bfcc987/c9a2761c13048afdd1b84f49e510e3b2.png" />
+    <meta property="og:description" content="VokaFlow: Plataforma líder en traducción simultánea y comunicación global. Traduce audio y texto en tiempo real, conecta sin barreras idiomáticas y potencia tu comunicación internacional" />
+    <meta property="og:image" content="https://cdn.cloudflare.com/vokaflow/assets/og-image.png" />
     <meta property="og:type" content="website" />
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="VokaFlow - Traducción Simultánea para Comunicación Global" />
-    <meta name="twitter:description" content="VokaFlow ofrece traducción simultánea de texto y audio, facilitando una comunicación global efectiva y aumentando tu productividad multilingüe." />
-    <meta name="twitter:image" content="https://storage.googleapis.com/hostinger-horizons-assets-prod/d7736bd0-0d27-42e9-93a8-56641bfcc987/c9a2761c13048afdd1b84f49e510e3b2.png" />
+    <meta name="twitter:description" content="VokaFlow: Plataforma líder en traducción simultánea y comunicación global. Traduce audio y texto en tiempo real, conecta sin barreras idiomáticas" />
+    <meta name="twitter:image" content="https://cdn.cloudflare.com/vokaflow/assets/twitter-card.png" />
     
     <!-- Schema.org -->
     <script type="application/ld+json">
@@ -47,10 +76,14 @@
       }
     </script>
     
-    <!-- Preload critical assets -->
-    <link rel="preload" href="https://storage.googleapis.com/hostinger-horizons-assets-prod/d7736bd0-0d27-42e9-93a8-56641bfcc987/3abef47c5f736d5cc02cd02dc8a89871.png" as="image" />
-    <link rel="preload" href="/src/index.css" as="style" />
-    <link rel="preload" href="/src/main.jsx" as="script" type="module" />
+    <!-- CDN Performance Optimization -->
+    <link rel="preconnect" href="https://cdn.cloudflare.com" crossorigin />
+    <link rel="dns-prefetch" href="https://cdn.cloudflare.com" />
+    
+    <!-- Preload critical assets from CDN -->
+    <link rel="preload" href="https://cdn.cloudflare.com/vokaflow/assets/favicon.png" as="image" />
+    <link rel="preload" href="https://cdn.cloudflare.com/vokaflow/css/index.css" as="style" />
+    <link rel="preload" href="https://cdn.cloudflare.com/vokaflow/js/main.js" as="script" type="module" />
     
     <!-- Preconnect to external domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

@@ -1,0 +1,11 @@
+
+{
+  "nav.home": "Inicio",
+  "nav.features": "Características",
+  "nav.benefits": "Beneficios",
+  "nav.success": "Casos de Éxito",
+  "nav.pricing": "Precios",
+  "nav.contact": "Contacto",
+  "auth.login": "Acceso",
+  "auth.register": "Registro"
+}

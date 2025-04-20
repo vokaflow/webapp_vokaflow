@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react"
 
 const TOAST_LIMIT = 1
@@ -18,6 +19,9 @@ function generateId() {
 }
 
 const toastTimeouts = new Map()
+
+// Create a singleton instance for the toast function
+let toastFn
 
 export function useToast() {
   const [state, setState] = useState({
@@ -75,8 +79,20 @@ export function useToast() {
     }
   }
 
+  // Store the toast function in our singleton
+  toastFn = toast
+
   return {
     toast,
     toasts: state.toasts,
   }
+}
+
+// Export a direct toast function that can be imported and used without the hook
+export const toast = (props) => {
+  if (!toastFn) {
+    console.warn('Toast function called before hook initialization')
+    return
+  }
+  return toastFn(props)
 }

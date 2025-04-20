@@ -1,0 +1,11 @@
+
+{
+  "nav.home": "Home",
+  "nav.features": "Features",
+  "nav.benefits": "Benefits",
+  "nav.success": "Success Stories",
+  "nav.pricing": "Pricing",
+  "nav.contact": "Contact",
+  "auth.login": "Login",
+  "auth.register": "Register"
+}

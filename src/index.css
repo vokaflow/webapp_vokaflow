@@ -7,6 +7,7 @@
 
 @layer base {
   :root {
+    /* Variables existentes sin cambios */
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
     --card: 0 0% 100%;
@@ -26,10 +27,18 @@
     --border: 240 5.9% 90%;
     --input: 240 5.9% 90%;
     --ring: 346 68% 43%;
-    --radius: 0.75rem;
+    --radius: 0.5rem;
+
+    /* Nuevas variables de animación */
+    --transition-fast: 0.2s ease-in-out;
+    --transition-base: 0.3s ease-in-out;
+    --transition-slow: 0.5s ease-in-out;
+    --scale-hover: 1.05;
+    --translate-hover: -4px;
   }
 
   .dark {
+    /* Variables dark mode sin cambios */
     --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
     --card: 240 10% 3.9%;
@@ -54,94 +63,263 @@
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-border transition-all duration-300 ease-in-out;
   }
+  
   body {
-    @apply bg-background text-foreground font-montserrat;
+    @apply bg-background text-foreground font-montserrat text-base leading-relaxed antialiased;
   }
-  
-  /* Optimizaciones táctiles */
-  button, a {
-    @apply min-h-[44px] min-w-[44px] cursor-pointer touch-manipulation;
+
+  /* Enlaces optimizados */
+  a:not(.btn-primary):not(.btn-secondary):not(.btn-outline):not([class*='button']) {
+    @apply text-[#0078FF] hover:text-[#D8409F] transition-colors duration-300;
+    @apply relative inline-flex items-center;
+    @apply after:content-[''] after:absolute after:w-full after:h-[1px] after:bg-current;
+    @apply after:left-0 after:-bottom-0.5 after:origin-right after:scale-x-0;
+    @apply after:transition-transform after:duration-300;
+    @apply hover:after:origin-left hover:after:scale-x-100;
   }
-  
-  /* Mejoras de accesibilidad */
-  :focus {
-    @apply outline-2 outline-offset-2 outline-primary;
+
+  /* Iconos optimizados */
+  .icon {
+    @apply w-12 h-12 max-w-[48px] max-h-[48px];
+    @apply flex items-center justify-center;
+    @apply transition-all duration-300;
   }
-  
-  @media (prefers-reduced-motion: reduce) {
-    * {
-      @apply transition-none animate-none;
+
+  .icon-sm {
+    @apply w-8 h-8;
+  }
+
+  .icon-lg {
+    @apply w-12 h-12;
+  }
+
+  .icon-hover {
+    @apply hover:scale-110 hover:text-[#D8409F] transition-transform duration-300;
+  }
+
+  /* Secciones y contenedores */
+  section {
+    @apply py-16 md:py-24 overflow-hidden;
+  }
+
+  .container {
+    @apply px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl;
+  }
+
+  /* Espaciado responsivo */
+  .section-spacing {
+    @apply py-12 md:py-16 lg:py-24;
+  }
+
+  .content-spacing {
+    @apply space-y-6 md:space-y-8 lg:space-y-12;
+  }
+
+  .element-spacing {
+    @apply space-y-4 md:space-y-6;
+  }
+
+  /* Alineación y márgenes */
+  .text-content {
+    @apply max-w-[65ch] mx-auto;
+  }
+
+  .center-content {
+    @apply flex items-center justify-center;
+  }
+
+  /* Jerarquía de encabezados optimizada para móvil */
+  h1 {
+    @apply font-montserrat text-[28px] sm:text-[32px] md:text-[34px] lg:text-[38px] font-bold leading-tight tracking-tight mb-4 md:mb-6;
+  }
+
+  h2 {
+    @apply font-montserrat text-[24px] sm:text-[26px] md:text-[28px] lg:text-[30px] font-semibold leading-snug tracking-normal mb-3 md:mb-4;
+  }
+
+  h3 {
+    @apply font-montserrat text-[20px] sm:text-[22px] md:text-[24px] font-medium leading-normal tracking-normal mb-2 md:mb-3;
+  }
+
+  /* Párrafos y texto base */
+  p {
+    @apply font-roboto text-base leading-relaxed tracking-normal mb-4;
+    @apply text-sm sm:text-base;
+  }
+
+  /* Botones corporativos con animaciones mejoradas */
+  .btn-primary {
+    @apply bg-[#0078FF] text-white hover:bg-[#D8409F];
+    @apply transition-all duration-300 ease-in-out;
+    @apply rounded-lg px-5 py-3;
+    @apply transform hover:-translate-y-1 hover:shadow-lg;
+    @apply active:translate-y-0 active:shadow-md;
+    @apply focus:outline-none focus:ring-2 focus:ring-[#0078FF] focus:ring-offset-2;
+  }
+
+  .btn-secondary {
+    @apply bg-[#D8409F] text-white hover:bg-[#D8409F]/90;
+    @apply transition-all duration-300 ease-in-out;
+    @apply rounded-lg px-5 py-3;
+    @apply transform hover:-translate-y-1 hover:shadow-lg;
+    @apply active:translate-y-0 active:shadow-md;
+    @apply focus:outline-none focus:ring-2 focus:ring-[#D8409F] focus:ring-offset-2;
+  }
+
+  .btn-outline {
+    @apply border-2 border-[#0078FF] text-[#0078FF] hover:bg-[#0078FF]/10;
+    @apply transition-all duration-300 ease-in-out;
+    @apply rounded-lg px-5 py-3;
+    @apply transform hover:-translate-y-1 hover:shadow-lg;
+    @apply active:translate-y-0 active:shadow-md;
+    @apply focus:outline-none focus:ring-2 focus:ring-[#0078FF] focus:ring-offset-2;
+  }
+
+  /* Grid y Flexbox responsivos */
+  .grid-cols-auto-fit {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8;
+  }
+
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+
+  .flex-between {
+    @apply flex items-center justify-between;
+  }
+
+  /* Cards y contenedores con animaciones */
+  .card {
+    @apply bg-white rounded-lg shadow-md p-4 sm:p-6;
+    @apply transition-all duration-300 ease-in-out;
+    @apply hover:shadow-lg hover:-translate-y-1;
+    @apply active:translate-y-0 active:shadow-md;
+  }
+
+  /* Efectos hover mejorados */
+  .hover-lift {
+    @apply transition-all duration-300 ease-in-out;
+    @apply hover:-translate-y-1 hover:shadow-lg;
+    @apply active:translate-y-0 active:shadow-md;
+  }
+
+  .hover-scale {
+    @apply transition-transform duration-300 ease-in-out;
+    @apply hover:scale-105;
+  }
+
+  /* Animaciones de entrada */
+  .fade-in {
+    @apply opacity-0 animate-[fadeIn_0.5s_ease-out_forwards];
+  }
+
+  .slide-up {
+    @apply opacity-0 translate-y-4 animate-[slideUp_0.5s_ease-out_forwards];
+  }
+
+  .pop-in {
+    @apply opacity-0 scale-95 animate-[popIn_0.3s_ease-out_forwards];
+  }
+
+  /* Responsive spacing */
+  @screen sm {
+    .section-inner {
+      @apply py-8;
+    }
+    
+    .content-wrapper {
+      @apply space-y-6;
+    }
+  }
+
+  @screen md {
+    .section-inner {
+      @apply py-12;
+    }
+    
+    .content-wrapper {
+      @apply space-y-8;
+    }
+  }
+
+  @screen lg {
+    .section-inner {
+      @apply py-16;
+    }
+    
+    .content-wrapper {
+      @apply space-y-12;
     }
   }
 }
 
+/* Utilidades de color */
+.text-primary {
+  @apply text-[#0078FF];
+}
+
+.text-secondary {
+  @apply text-[#D8409F];
+}
+
+.bg-primary {
+  @apply bg-[#0078FF];
+}
+
+.bg-secondary {
+  @apply bg-[#D8409F];
+}
+
+/* Efectos y animaciones */
 .gradient-bg {
-  background: linear-gradient(135deg, #D8409F 0%, #0078FF 50%, #FFA700 100%);
+  @apply bg-gradient-to-r from-[#D8409F] via-[#0078FF] to-[#FFA700];
 }
 
 .glass-effect {
-  backdrop-filter: blur(10px);
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.text-gradient {
-  background: linear-gradient(135deg, #D8409F, #0078FF);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.feature-card {
-  @apply relative overflow-hidden rounded-2xl p-6 transition-all duration-300 hover:shadow-xl;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.feature-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, rgba(216, 64, 159, 0.1), rgba(0, 120, 255, 0.1));
-  z-index: -1;
-  transition: opacity 0.3s ease;
-  opacity: 0;
-}
-
-.feature-card:hover::before {
-  opacity: 1;
-}
-
-/* Microanimaciones */
-.hover-scale {
-  @apply transition-transform duration-300 hover:scale-105;
-}
-
-.hover-lift {
-  @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg;
-}
-
-.pulse {
-  @apply animate-pulse;
-}
-
-/* Optimizaciones de rendimiento */
-img, video {
-  @apply will-change-transform;
+  @apply backdrop-blur-md bg-white/10;
 }
 
 /* Mejoras de accesibilidad */
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-[#0078FF] focus:ring-offset-2;
+}
+
 .sr-only {
   @apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0;
 }
 
-/* Soporte para modo oscuro */
-.dark .feature-card {
-  background: rgba(0, 0, 0, 0.2);
+/* Animaciones personalizadas */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 /* Optimizaciones móviles */
@@ -149,8 +327,14 @@ img, video {
   .container {
     @apply px-4;
   }
-  
-  button, a {
+
+  .btn-primary,
+  .btn-secondary,
+  .btn-outline {
+    @apply w-full justify-center;
+  }
+
+  .card {
     @apply p-4;
   }
 }

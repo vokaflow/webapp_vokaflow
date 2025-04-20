@@ -1,0 +1,27 @@
+
+# VokaFlow Website Robots.txt
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://vokaflow.com/sitemap.xml
+
+# Directories
+Disallow: /admin/
+Disallow: /private/
+Disallow: /temp/
+Disallow: /api/
+
+# Files
+Disallow: /*.json$
+Disallow: /*.xml$
+Disallow: /*.txt$
+
+# Allow critical assets
+Allow: /assets/
+Allow: /images/
+Allow: /css/
+Allow: /js/
+
+# Crawl-delay
+Crawl-delay: 10

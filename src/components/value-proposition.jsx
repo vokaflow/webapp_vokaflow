@@ -18,10 +18,10 @@ export function ValueProposition() {
           </h2>
           
           <p className="text-[18px] text-[#121212] font-roboto">
-            Con VokaFlow, romper las barreras del idioma es fácil, rápido y natural. 
+            Con VokaFlow, romper las barreras del idioma es fácil, rápido y natural
             Experimenta la traducción simultánea de texto y audio en tiempo real, 
-            haciendo que cada interacción global sea clara y efectiva. Conecta con 
-            personas en todo el mundo sin esfuerzo, potenciando tu comunicación al máximo.
+            haciendo que cada interacción global sea clara y efectiva
+            Conecta con personas en todo el mundo sin esfuerzo, potenciando tu comunicación al máximo
           </p>
 
           <p className="text-[22px] italic text-[#D8409F] font-roboto font-medium">

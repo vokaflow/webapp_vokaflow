@@ -1,169 +1,143 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Building2, Globe, Users, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { Building2, Globe, Users, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { Card, CardContent } from '@/components/ui/card';
+import { Helmet } from 'react-helmet';
 
 export function NegociosGlobales() {
   return (
-    <div className="min-h-screen pt-20">
-      <section className="py-24 bg-background">
-        <div className="container px-4 md:px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="max-w-4xl mx-auto text-center"
-          >
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent">
-              Negocios Globales con VokaFlow
-            </h1>
-            <h2 className="text-xl md:text-2xl text-muted-foreground mb-8">
-              Impulsando conexiones comerciales fluidas y exitosas entre culturas e idiomas distintos
-            </h2>
-          </motion.div>
+    <>
+      <Helmet>
+        <title>Expande Tu Negocio Internacionalmente | VokaFlow</title>
+        <meta name="description" content="Descubre cómo empresas internacionales multiplican su éxito al usar la comunicación multilingüe en tiempo real que ofrece VokaFlow." />
+      </Helmet>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="max-w-4xl mx-auto mt-12"
-          >
-            <div className="mb-12">
-              <p className="text-lg leading-relaxed text-muted-foreground">
-                Los negocios globales enfrentan retos constantes relacionados con las barreras lingüísticas y culturales. 
-                VokaFlow rompe estas barreras proporcionando traducción instantánea y precisa en tiempo real. Permite a 
-                empresarios, directivos y profesionales negociar, colaborar y comunicarse eficazmente sin importar el 
-                idioma que hablen sus socios o clientes.
+      <div className="min-h-screen pt-20">
+        <section className="py-24 bg-background">
+          <div className="container px-4 md:px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="max-w-4xl mx-auto text-center"
+            >
+              <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent">
+                Negocios Globales con VokaFlow
+              </h1>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                Descubre cómo empresas internacionales multiplican su éxito al usar la comunicación multilingüe en tiempo real que ofrece VokaFlow.
               </p>
-            </div>
-
-            <Card className="mb-12 overflow-hidden">
-              <CardContent className="p-8">
-                <div className="flex flex-col md:flex-row gap-8 items-center">
-                  <div className="md:w-1/2">
-                    <img  
-                      className="rounded-lg w-full h-auto shadow-xl"
-                      alt="Videoconferencia internacional con gráficos de crecimiento empresarial" src="https://images.unsplash.com/photo-1551135049-8a33b5883817" />
-                  </div>
-                  <div className="md:w-1/2 space-y-4">
-                    <h3 className="text-2xl font-semibold text-primary">
-                      Caso de éxito: Ana, Empresaria Española
-                    </h3>
-                    <p className="text-muted-foreground">
-                      Ana, empresaria del sector tecnológico, utilizó VokaFlow para negociar un acuerdo estratégico 
-                      con una importante empresa japonesa. Gracias a la traducción instantánea y precisa, Ana pudo 
-                      presentar claramente su propuesta, entender las necesidades de sus socios potenciales y cerrar 
-                      exitosamente un acuerdo crucial para su expansión internacional.
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-              <Card className="overflow-hidden">
-                <CardContent className="p-6">
-                  <img  
-                    className="rounded-lg w-full h-48 object-cover mb-4"
-                    alt="Gráficos de estadísticas de éxito comercial" src="https://images.unsplash.com/photo-1697256200022-f61abccad430" />
-                  <h4 className="text-xl font-semibold mb-2">Resultados Medibles</h4>
-                  <p className="text-muted-foreground">
-                    Incremento significativo en el éxito de negociaciones internacionales
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="overflow-hidden">
-                <CardContent className="p-6">
-                  <img  
-                    className="rounded-lg w-full h-48 object-cover mb-4"
-                    alt="Iconos internacionales de negocios" src="https://images.unsplash.com/photo-1561491432-82f2b22a263e" />
-                  <h4 className="text-xl font-semibold mb-2">Alcance Global</h4>
-                  <p className="text-muted-foreground">
-                    Expansión efectiva a nuevos mercados internacionales
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-
-            <Card className="mb-12 bg-primary/5 border-primary/20">
-              <CardContent className="p-8">
-                <blockquote className="text-xl italic text-primary relative pl-4 border-l-4 border-primary">
-                  "VokaFlow eliminó completamente la ansiedad de comunicarme en otro idioma. Me sentí segura, 
-                  comprendida y efectiva en mis negociaciones. Ha sido una herramienta esencial para mi 
-                  crecimiento profesional internacional."
-                  <footer className="mt-4 text-sm text-muted-foreground">
-                    — Ana S. (España)
-                  </footer>
-                </blockquote>
-              </CardContent>
-            </Card>
-
-            <div className="grid gap-8 md:grid-cols-3 mb-12">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                className="feature-card"
-              >
-                <Globe className="w-12 h-12 mb-4 text-primary" />
-                <h3 className="text-xl font-semibold mb-2">Comunicación Global</h3>
-                <p className="text-muted-foreground">
-                  Traducción instantánea y precisa para negociaciones efectivas
-                </p>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-                className="feature-card"
-              >
-                <Users className="w-12 h-12 mb-4 text-primary" />
-                <h3 className="text-xl font-semibold mb-2">Colaboración Efectiva</h3>
-                <p className="text-muted-foreground">
-                  Facilita reuniones y negociaciones internacionales
-                </p>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
-                className="feature-card"
-              >
-                <Building2 className="w-12 h-12 mb-4 text-primary" />
-                <h3 className="text-xl font-semibold mb-2">Expansión Internacional</h3>
-                <p className="text-muted-foreground">
-                  Impulsa el crecimiento global de tu negocio
-                </p>
-              </motion.div>
-            </div>
+            </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-              className="text-center"
+              transition={{ delay: 0.2 }}
+              className="max-w-4xl mx-auto mt-12"
             >
-              <h2 className="text-2xl font-semibold mb-8">
-                Descubre cómo VokaFlow puede potenciar también tu negocio global
-              </h2>
-              <Link to="/contacto">
-                <Button
-                  size="lg"
-                  className="bg-primary hover:bg-primary/90 text-lg px-8 py-6 hover-lift"
+              <div className="mb-12">
+                <p className="text-lg leading-relaxed text-muted-foreground">
+                  Empresas globales de diversos sectores han adoptado VokaFlow para eliminar completamente las barreras idiomáticas en sus operaciones internacionales. Desde negociaciones comerciales hasta reuniones internas, VokaFlow facilita interacciones efectivas y claras, sin importar el idioma.
+                </p>
+              </div>
+
+              <Card className="mb-12 overflow-hidden">
+                <CardContent className="p-8">
+                  <div className="flex flex-col md:flex-row gap-8 items-center">
+                    <div className="md:w-1/2">
+                      <img  
+                        className="rounded-lg w-full h-auto shadow-xl"
+                        alt="Reunión empresarial internacional" src="https://images.unsplash.com/photo-1634213625130-f702915cda99" />
+                    </div>
+                    <div className="md:w-1/2 space-y-4">
+                      <h3 className="text-2xl font-semibold text-primary">
+                        Expansión Internacional Exitosa
+                      </h3>
+                      <p className="text-muted-foreground">
+                        Gracias a nuestra tecnología, empresas pueden rápidamente expandirse hacia nuevos mercados, fortaleciendo sus relaciones comerciales y aumentando significativamente su eficiencia operativa global.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <div className="grid gap-8 md:grid-cols-3 mb-12">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                  className="feature-card"
                 >
-                  Solicita tu Demo Gratuita
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </Link>
+                  <Globe className="w-12 h-12 mb-4 text-primary" />
+                  <h3 className="text-xl font-semibold mb-2">Expansión Global</h3>
+                  <p className="text-muted-foreground">
+                    Expansión eficaz a mercados internacionales con comunicación clara
+                  </p>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                  className="feature-card"
+                >
+                  <Users className="w-12 h-12 mb-4 text-primary" />
+                  <h3 className="text-xl font-semibold mb-2">Equipos Multilingües</h3>
+                  <p className="text-muted-foreground">
+                    Comunicación fluida en equipos internacionales diversos
+                  </p>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                  className="feature-card"
+                >
+                  <Building2 className="w-12 h-12 mb-4 text-primary" />
+                  <h3 className="text-xl font-semibold mb-2">Eficiencia Operativa</h3>
+                  <p className="text-muted-foreground">
+                    Incremento significativo en eficiencia operativa global
+                  </p>
+                </motion.div>
+              </div>
+
+              <Card className="mb-12 bg-primary/5 border-primary/20">
+                <CardContent className="p-8">
+                  <blockquote className="text-xl italic text-primary relative pl-4 border-l-4 border-primary">
+                    "VokaFlow ha transformado nuestra forma de hacer negocios internacionalmente. La comunicación fluida y precisa nos ha permitido expandirnos a nuevos mercados con confianza."
+                    <footer className="mt-4 text-sm text-muted-foreground">
+                      — Carlos R., Director de Expansión Internacional
+                    </footer>
+                  </blockquote>
+                </CardContent>
+              </Card>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 }}
+                className="text-center"
+              >
+                <h2 className="text-2xl font-semibold mb-8">
+                  ¡Lleva tu negocio al siguiente nivel global con VokaFlow!
+                </h2>
+                <Link to="/contacto">
+                  <Button
+                    size="lg"
+                    className="bg-primary hover:bg-primary/90 text-lg px-8 py-6"
+                  >
+                    Comienza tu expansión global
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </Link>
+              </motion.div>
             </motion.div>
-          </motion.div>
-        </div>
-      </section>
-    </div>
+          </div>
+        </section>
+      </div>
+    </>
   );
 }

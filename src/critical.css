@@ -1,0 +1,52 @@
+
+/* Critical CSS para contenido above-the-fold */
+:root {
+  --background: 0 0% 100%;
+  --foreground: 240 10% 3.9%;
+  --primary: 326 68% 43%;
+  --secondary: 217 100% 50%;
+  --accent: 35 100% 50%;
+}
+
+.dark {
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  backdrop-filter: blur(8px);
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #D8409F 0%, #0078FF 50%, #FFA700 100%);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #D8409F, #0078FF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

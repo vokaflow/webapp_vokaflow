@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form';
 import { useToast } from '@/components/ui/use-toast';
+import { handleAsyncError, validateForm } from '@/lib/error-utils';
 
 export function Contact() {
   const { toast } = useToast();
@@ -13,14 +14,57 @@ export function Contact() {
     email: '',
     message: '',
   });
+  const [errors, setErrors] = React.useState({});
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
 
-  const handleSubmit = (e) => {
+  const validationRules = {
+    name: { required: true, minLength: 2 },
+    email: { required: true, email: true },
+    message: { required: true, minLength: 10 },
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    toast({
-      title: '¡Mensaje enviado!',
-      description: 'Nos pondremos en contacto contigo pronto.',
-    });
-    setFormData({ name: '', email: '', message: '' });
+    
+    // Validate form
+    const validationErrors = validateForm(formData, validationRules);
+    setErrors(validationErrors);
+    
+    if (Object.keys(validationErrors).length > 0) {
+      toast({
+        variant: "destructive",
+        title: "Error de validación",
+        description: "Por favor, revisa los campos marcados en rojo."
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      await handleAsyncError(
+        // Simulated API call
+        new Promise((resolve) => setTimeout(resolve, 1000)),
+        { context: 'contact-form', formData }
+      );
+
+      toast({
+        title: '¡Mensaje enviado!',
+        description: 'Nos pondremos en contacto contigo pronto.',
+      });
+      
+      setFormData({ name: '', email: '', message: '' });
+      setErrors({});
+    } catch (error) {
+      // Error already logged by handleAsyncError
+      toast({
+        variant: "destructive",
+        title: "Error al enviar",
+        description: "No se pudo enviar el mensaje. Por favor, inténtalo de nuevo."
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -59,9 +103,12 @@ export function Contact() {
                 onChange={(e) =>
                   setFormData({ ...formData, name: e.target.value })
                 }
+                className={errors.name ? "border-destructive" : ""}
+                disabled={isSubmitting}
                 required
               />
             </FormControl>
+            {errors.name && <FormMessage>{errors.name}</FormMessage>}
           </FormItem>
           <FormItem>
             <FormLabel>Email</FormLabel>
@@ -73,26 +120,37 @@ export function Contact() {
                 onChange={(e) =>
                   setFormData({ ...formData, email: e.target.value })
                 }
+                className={errors.email ? "border-destructive" : ""}
+                disabled={isSubmitting}
                 required
               />
             </FormControl>
+            {errors.email && <FormMessage>{errors.email}</FormMessage>}
           </FormItem>
           <FormItem>
             <FormLabel>Mensaje</FormLabel>
             <FormControl>
               <textarea
-                className="min-h-[100px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                className={`min-h-[100px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${
+                  errors.message ? "border-destructive" : ""
+                }`}
                 placeholder="Tu mensaje"
                 value={formData.message}
                 onChange={(e) =>
                   setFormData({ ...formData, message: e.target.value })
                 }
+                disabled={isSubmitting}
                 required
               />
             </FormControl>
+            {errors.message && <FormMessage>{errors.message}</FormMessage>}
           </FormItem>
-          <Button type="submit" className="w-full">
-            Enviar Mensaje
+          <Button 
+            type="submit" 
+            className="w-full"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "Enviando..." : "Enviar Mensaje"}
           </Button>
         </motion.form>
       </div>
