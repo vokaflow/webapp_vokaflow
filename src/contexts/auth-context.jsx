@@ -4,13 +4,13 @@ import {
   createUserWithEmailAndPassword, 
   signInWithEmailAndPassword, 
   signInWithPopup,
-  GoogleAuthProvider,
   signOut as firebaseSignOut,
-  onAuthStateChanged 
+  onAuthStateChanged,
+  updateProfile
 } from 'firebase/auth';
-import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
-import { auth, db } from '@/firebase-config';
+import { auth, provider } from '@/firebase';
 import { useToast } from '@/components/ui/use-toast';
+import { getFirebaseErrorMessage } from '@/lib/form-validation';
 
 const AuthContext = createContext({});
 
@@ -21,6 +21,7 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
+      console.log('Auth state changed:', user ? 'User logged in' : 'User logged out');
       setUser(user);
       setLoading(false);
     });
@@ -28,41 +29,27 @@ export function AuthProvider({ children }) {
     return () => unsubscribe();
   }, []);
 
-  const createUserDocument = async (user, additionalData = {}) => {
-    if (!user) return;
-
-    const userRef = doc(db, 'users', user.uid);
-    const userData = {
-      email: user.email,
-      nombre: user.displayName || additionalData.nombre,
-      fecha_registro: serverTimestamp(),
-    };
-
-    try {
-      await setDoc(userRef, userData);
-    } catch (error) {
-      console.error('Error creating user document:', error);
-      toast({
-        title: "Error",
-        description: "No se pudo crear el perfil del usuario",
-        variant: "destructive",
-      });
-    }
-  };
-
   const signUp = async (email, password, nombre) => {
     try {
+      console.log('Starting sign up process for:', email);
       const { user } = await createUserWithEmailAndPassword(auth, email, password);
-      await createUserDocument(user, { nombre });
+      
+      console.log('User created, updating profile...');
+      await updateProfile(user, {
+        displayName: nombre
+      });
+      
       toast({
         title: "¡Registro exitoso!",
         description: "Bienvenido a VokaFlow",
       });
       return user;
     } catch (error) {
+      console.error('Error in signUp:', error);
+      const errorMessage = getFirebaseErrorMessage(error.code);
       toast({
         title: "Error en el registro",
-        description: error.message,
+        description: errorMessage,
         variant: "destructive",
       });
       throw error;
@@ -71,16 +58,21 @@ export function AuthProvider({ children }) {
 
   const signIn = async (email, password) => {
     try {
+      console.log('Starting sign in process for:', email);
       const { user } = await signInWithEmailAndPassword(auth, email, password);
+      console.log('User signed in successfully');
+      
       toast({
         title: "¡Inicio de sesión exitoso!",
         description: "Bienvenido de nuevo",
       });
       return user;
     } catch (error) {
+      console.error('Error in signIn:', error);
+      const errorMessage = getFirebaseErrorMessage(error.code);
       toast({
         title: "Error al iniciar sesión",
-        description: error.message,
+        description: errorMessage,
         variant: "destructive",
       });
       throw error;
@@ -89,18 +81,32 @@ export function AuthProvider({ children }) {
 
   const signInWithGoogle = async () => {
     try {
-      const provider = new GoogleAuthProvider();
-      const { user } = await signInWithPopup(auth, provider);
-      await createUserDocument(user);
+      console.log('Starting Google sign in process');
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      console.log('Google sign in successful');
+      
       toast({
         title: "¡Inicio de sesión exitoso!",
         description: "Bienvenido a VokaFlow",
       });
+      
       return user;
     } catch (error) {
+      console.error('Error in Google sign in:', error);
+      let errorMessage;
+      
+      if (error.code === 'auth/popup-closed-by-user') {
+        errorMessage = "Se cerró la ventana de Google. Por favor, intenta nuevamente.";
+      } else if (error.code === 'auth/popup-blocked') {
+        errorMessage = "Tu navegador bloqueó la ventana emergente. Por favor, permite ventanas emergentes y vuelve a intentar.";
+      } else {
+        errorMessage = getFirebaseErrorMessage(error.code);
+      }
+      
       toast({
         title: "Error al iniciar sesión con Google",
-        description: error.message,
+        description: errorMessage,
         variant: "destructive",
       });
       throw error;
@@ -109,15 +115,20 @@ export function AuthProvider({ children }) {
 
   const signOut = async () => {
     try {
+      console.log('Starting sign out process');
       await firebaseSignOut(auth);
+      console.log('Sign out successful');
+      
       toast({
         title: "Sesión cerrada",
         description: "Has cerrado sesión correctamente",
       });
     } catch (error) {
+      console.error('Error in signOut:', error);
+      const errorMessage = getFirebaseErrorMessage(error.code);
       toast({
         title: "Error al cerrar sesión",
-        description: error.message,
+        description: errorMessage,
         variant: "destructive",
       });
       throw error;

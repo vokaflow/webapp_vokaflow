@@ -13,15 +13,9 @@ const firebaseConfig = {
   measurementId: "G-W0T4QFDW9J"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
-
-// Configure Google Auth Provider with custom parameters
-provider.setCustomParameters({
-  prompt: 'select_account'
-});
 
 export { app, analytics, auth, provider };

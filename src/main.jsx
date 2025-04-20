@@ -5,7 +5,7 @@ import App from '@/App';
 import '@/index.css';
 import { performanceMonitor } from '@/lib/monitoring';
 import { SizeReporter } from '@/lib/size-reporter';
-import { app, auth, db, analytics } from '@/firebase-config';
+import { app, auth, analytics } from '@/firebase';
 
 // Initialize performance monitoring
 performanceMonitor.init();

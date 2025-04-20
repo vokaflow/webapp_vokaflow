@@ -3,24 +3,57 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { FormMessage } from '@/components/ui/form';
 import { useAuth } from '@/contexts/auth-context';
 import { motion } from 'framer-motion';
+import { Spinner } from '@/components/ui/spinner';
+import { validateEmail, validatePassword } from '@/lib/form-validation';
+import { cn } from '@/lib/utils';
 
 export function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [formData, setFormData] = useState({
+    email: '',
+    password: ''
+  });
+  const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const { signIn, signInWithGoogle } = useAuth();
   const navigate = useNavigate();
 
+  const validateForm = () => {
+    const newErrors = {
+      email: validateEmail(formData.email),
+      password: validatePassword(formData.password)
+    };
+    setErrors(newErrors);
+    return !Object.values(newErrors).some(error => error);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+    
+    // Validación en tiempo real
+    setErrors(prev => ({
+      ...prev,
+      [name]: name === 'email'
+        ? validateEmail(value)
+        : name === 'password'
+        ? validatePassword(value)
+        : ""
+    }));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!validateForm()) return;
+
     setLoading(true);
     try {
-      await signIn(email, password);
+      await signIn(formData.email, formData.password);
       navigate('/');
     } catch (error) {
-      console.error(error);
+      console.error('Error en inicio de sesión:', error);
     } finally {
       setLoading(false);
     }
@@ -29,10 +62,12 @@ export function Login() {
   const handleGoogleSignIn = async () => {
     setLoading(true);
     try {
+      console.log('Iniciando autenticación con Google...');
       await signInWithGoogle();
+      console.log('Autenticación con Google exitosa');
       navigate('/');
     } catch (error) {
-      console.error(error);
+      console.error('Error en autenticación con Google:', error);
     } finally {
       setLoading(false);
     }
@@ -53,23 +88,27 @@ export function Login() {
           <div>
             <Input
               type="email"
+              name="email"
               placeholder="Correo electrónico"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={formData.email}
+              onChange={handleChange}
               required
-              className="w-full"
+              className={cn("w-full", errors.email && "border-red-500")}
             />
+            {errors.email && <FormMessage>{errors.email}</FormMessage>}
           </div>
           
           <div>
             <Input
               type="password"
+              name="password"
               placeholder="Contraseña"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={formData.password}
+              onChange={handleChange}
               required
-              className="w-full"
+              className={cn("w-full", errors.password && "border-red-500")}
             />
+            {errors.password && <FormMessage>{errors.password}</FormMessage>}
           </div>
 
           <Button
@@ -77,7 +116,14 @@ export function Login() {
             className="w-full bg-[#0078FF] hover:bg-[#0078FF]/90"
             disabled={loading}
           >
-            {loading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
+            {loading ? (
+              <div className="flex items-center justify-center">
+                <Spinner className="mr-2" />
+                <span>Iniciando sesión...</span>
+              </div>
+            ) : (
+              'Iniciar Sesión'
+            )}
           </Button>
         </form>
 
@@ -98,12 +144,21 @@ export function Login() {
             disabled={loading}
             className="w-full mt-4"
           >
-            <img
-              src="https://www.google.com/favicon.ico"
-              alt="Google"
-              className="w-5 h-5 mr-2"
-            />
-            Google
+            {loading ? (
+              <div className="flex items-center justify-center">
+                <Spinner className="mr-2" />
+                <span>Conectando...</span>
+              </div>
+            ) : (
+              <>
+                <img
+                  src="https://www.google.com/favicon.ico"
+                  alt="Google"
+                  className="w-5 h-5 mr-2"
+                />
+                Google
+              </>
+            )}
           </Button>
         </div>
       </motion.div>
